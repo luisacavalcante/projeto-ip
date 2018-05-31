@@ -1,0 +1,58 @@
+// server
+
+#include "server.h"
+#include <stdio.h>
+#include <string.h>
+
+#define MSG_MAX_SIZE 350
+#define BUFFER_SIZE (MSG_MAX_SIZE + 100)
+#define LOGIN_MAX_SIZE 13
+#define MAX_CHAT_CLIENTS 3
+
+
+
+int main() {
+// ok nome dos clients
+  char client_names[MAX_CHAT_CLIENTS][LOGIN_MAX_SIZE];
+  char str_buffer[BUFFER_SIZE], aux_buffer[BUFFER_SIZE];
+
+  // serverInit== serverinit(max_clients):
+  // Inicializa variáveis internas importantes para o servidor,
+  // esta função dever ser chamada sempre uma única vez no código de qualquer server.
+  serverInit(MAX_CHAT_CLIENTS);
+  // puts==printf
+  puts("Server is running!!");
+  while (1) {
+    // acceptConnection== busca por uma conexao nova, caso tenha alguma pendente
+    int id = acceptConnection();
+    if (id != NO_CONNECTION) {
+
+/*
+Caso haja alguma conexão pendente a função retorna o id que foi dado para o cliente. 
+O id é um número entre [0, max_clients) (onde max_clients dado como argumento de serverInit).
+
+Caso não exista conexões pendentes o retorno da função é NO_CONNECTION (definido em server.h)
+*/
+
+      recvMsgFromClient(client_names[id], id, WAIT_FOR_IT);
+      strcpy(str_buffer, client_names[id]);
+      strcat(str_buffer, " connected to chat");
+      broadcast(str_buffer, (int)strlen(str_buffer) + 1);
+      printf("%s connected id = %d\n", client_names[id], id);
+    }
+
+    struct msg_ret_t msg_ret = recvMsg(aux_buffer);
+    if (msg_ret.status == MESSAGE_OK) {
+      
+// aqui ele faz o printf da palavra digitada pelo user
+      sprintf(str_buffer, "%s-%d: %s", client_names[msg_ret.client_id],
+              msg_ret.client_id, aux_buffer);
+      broadcast(str_buffer, (int)strlen(str_buffer) + 1);
+    } else if (msg_ret.status == DISCONNECT_MSG) {
+      sprintf(str_buffer, "%s disconnected", client_names[msg_ret.client_id]);
+      printf("%s disconnected, id = %d is free\n",
+             client_names[msg_ret.client_id], msg_ret.client_id);
+      broadcast(str_buffer, (int)strlen(str_buffer) + 1);
+    }
+  }
+}
