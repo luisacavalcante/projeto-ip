@@ -43,12 +43,40 @@ void assertConnection() {
   }
 }
 
-void ipName(){
-	// IP
-    writeYourIPScreen(xmain,ymain);
-    assertConnection();
 
-    // NOME
-    writeYourNameScreen(xmain,ymain);
-    sendMsgToServer(name, sizeof(char)*strlen(name));
+//FUNÇÃO QUE FAZ A CONEXÃO DO CLIENT COM O SERIDOR
+void connect(){
+	// IP
+  writeYourIPScreen(xmain,ymain);
+  assertConnection();
+
+  // NOME
+  writeYourNameScreen(xmain,ymain);
+  sendMsgToServer(name, sizeof(char)*strlen(name));
+}
+
+
+//FUNÇÃO QUE ESPERA OS JOGADORES ENTRAREM NA SALA ATÉ O INÍCIO DO JOGO
+void loadingScreen(int *play){
+  int resp;
+  char msg[100];
+  resp = recvMsgFromServer(msg, DONT_WAIT);
+  if(resp == SERVER_DISCONNECTED){
+  //tentar conectar de novo
+  }
+  else if(resp != NO_MESSAGE){
+  //passar pro allegro
+    if(msg == SERVER_FULL){
+      printf("SERVER FULL")
+      printf("GAME IS BEGINING...")
+      &play = 0;
+    }
+    else if(msg == START){
+      printf("GAME IS BEGINING...")
+      &play = 0;
+    }
+    else{
+      printf("%s", msg);
+    }
+  }
 }
