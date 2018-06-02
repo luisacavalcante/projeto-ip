@@ -41,37 +41,12 @@ int main() {
 
         //START GAME
         if(command==0){
-        // IP
-          writeYourIPScreen(xmain,ymain);
-          assertConnection();
-
-        // NOME
-          writeYourNameScreen(xmain,ymain);
-          sendMsgToServer(name, sizeof(char)*strlen(name));
+	    	connect();
 
         //Loading...
-          int play = 1, resp;
-          char msg[100];
+          int play = 1;
           while(play){
-            resp = recvMsgFromServer(msg, DONT_WAIT);
-            if(resp == SERVER_DISCONNECTED){
-              //tentar conectar de novo
-            }
-            else if(resp != NO_MESSAGE){
-              //passar pro allegro
-              if(msg == SERVER_FULL){
-                printf("SERVER FULL")
-                printf("GAME IS BEGINING...")
-                play = 0;
-              }
-              else if(msg == START){
-                printf("GAME IS BEGINING...")
-                play = 0;
-              }
-              else{
-                printf("%s", msg);
-              }
-            }
+          	loadingScreen(&play){
           }
         //Paradas loucas do jogo
           strcpy(jogador[player].nome,name);
