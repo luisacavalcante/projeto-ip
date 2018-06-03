@@ -1,17 +1,19 @@
 # Citadel
-Jogo desenvolvido por: Ezequiel dos Santos (ejs3)
+Jogo desenvolvido por: 
 
-                       Ítalo Henrique (ihls2)
+Ezequiel dos Santos (ejs3)
+
+Ítalo Henrique (ihls2)
                        
-                       Luisa Nogueira (lncc)
+Luisa Nogueira (lncc)
                        
-                       Maria Eduarda dos Santos (mesps)
+Maria Eduarda dos Santos (mesps)
                        
-                       Samuel Brasileiro (sbsn)
+Samuel Brasileiro (sbsn)
                        
-                       Tales Tomaz Costa (ttc)
+Tales Tomaz Costa (ttc)
                        
-                       Thayná Luiza Gitirana (tlgc)
+Thayná Luiza Gitirana (tlgc)
                        
 # Descrição
 Projeto da cadeira de Introdução à programação do curso de engenharia da computação 2018.1
