@@ -9,7 +9,7 @@
 #define LOGIN_MAX_SIZE 16
 #define MAX_CLIENTS 8
 
-struct character *jogador;
+struct character jogador[8];
 
 //whatIs recebe o id do cliente e checa se é par(guarda) ou ímpar(ladrão)
 int whatIs (int x) {
@@ -19,7 +19,6 @@ int whatIs (int x) {
 
 int main() 
 {
-	jogador = (character *) malloc(2*sizeof(character));
 	char str_buffer[BUFFER_SIZE], aux_buffer[BUFFER_SIZE];
 	int i, quant_connect = 0;
 
@@ -30,9 +29,6 @@ int main()
 	  	//Deve acontecer enquanto o jogo não comecar
 	    int id = acceptConnection();
 	    if (id != NO_CONNECTION) {
-	    	//Realoca o ponteiro de jogadores
-	    	jogador = (character *) realloc(jogador, (2 + id)*sizeof(character));
-
 	    	//Recebe o nome do cliente
 	    	recvMsgFromClient(jogador[id].nome, id, WAIT_FOR_IT);
 	    	strcpy(str_buffer, jogador[id].nome);
@@ -60,7 +56,7 @@ int main()
 	    
 	    //Deve acontecer quando o jogo comecar
 	    //Manda para todos os jogadores a quantidade de jogadores conectados
-	    broadcast(&quant_connect, sifeof(int), int client_id);
+	    broadcast(&quant_connect, sizeof(int), int client_id);
 
 	    //Recebe as structs de todos os jogadores
 	    for (i = 0; i < quant_connect; i++) {
@@ -68,7 +64,9 @@ int main()
 	    }
 
 	    //Manda a struct atualizada dos jogadores para todos
-	    broadcast(jogador, sizeof(character));
+	    for (i = 0; i < quant_connect; i++) {    
+	    	broadcast(jogador[i], sizeof(character));
+	    }
 
 	    //Acontece sempre
 	    //Saber se o jogador se deconectou
