@@ -80,3 +80,11 @@ void loadingScreen(int *play){
     }
   }
 }
+// INICIO DO JOGO 
+// criar um while para a execucao do jogo(ate o usuario sair)
+// Client recebe do server o numero de jogadores(server)
+// ZOOM 3x
+//Client compartilha seu  movimento para o server(struct)
+//client recebe localizacao nova de todos os personagens para todos os jogadores
+// Client: Checar outros personagens no parametro da tela
+//Se houver imprime os respectivos personagens na tela
