@@ -4,6 +4,30 @@
 #include "AllegroCore.h"
 #include "MainMenuLibrary.h"
 
+int didIgetHurt(int i){
+    for(int j=0;j<8;j++){
+        if(j!=i && jogador[j].comando == 5){
+            if(jogador[j].set==2){
+
+            }
+            if(jogador[j].set==0){
+                
+            }
+            if(jogador[j].set==1){
+                
+            }
+            if(jogador[j].set==3){
+                if( jogador[j].x - jogador[i].x <= 23 &&
+                    jogador[j].x - jogador[i].x >=  8 &&
+                    jogador[j].y - jogador[i].y <= 8  &&
+                    jogador[j].y - jogador[i].y >= -8 ){
+                    return 1;
+                }else return 0;
+            }
+        }
+    }
+ }
+
 void aleatorizePowerUps(){
     int forget;
     for(int i = 0; i < 4; i++){
