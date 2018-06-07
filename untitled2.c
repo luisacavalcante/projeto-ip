@@ -80,3 +80,5 @@ void loadingScreen(int *play){
     }
   }
 }
+// INICIO DO JOGO 
+
