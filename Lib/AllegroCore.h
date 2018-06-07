@@ -45,7 +45,7 @@ typedef struct{
                     jogador[j].y - jogador[i].y <= 8  &&
                     jogador[j].y - jogador[i].y >= -8 ){
                     return 1;
-                }else return 0
+                }else return 0;
             }
         }
     }
