@@ -1,16 +1,3 @@
-#ifndef GAME_H
-#define GAME_H
-
-// Os arquivos de cabeçalho
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_ttf.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <time.h>
 #include "Matriz.h"
 
@@ -26,31 +13,6 @@ typedef struct{
     int weapon, ihaveweapon;
     int immunityCounter;
 }character;
-
- int didIgetHurt(int i){
-    for(int j=0;j<8;j++){
-        if(j!=i && jogador[j].comando == 5){
-            if(jogador[j].set==2){
-
-            }
-            if(jogador[j].set==0){
-                
-            }
-            if(jogador[j].set==1){
-                
-            }
-            if(jogador[j].set==3){
-                if( jogador[j].x - jogador[i].x <= 23 &&
-                    jogador[j].x - jogador[i].x >=  8 &&
-                    jogador[j].y - jogador[i].y <= 8  &&
-                    jogador[j].y - jogador[i].y >= -8 ){
-                    return 1;
-                }else return 0;
-            }
-        }
-    }
- }
-
 
 character jogador[8];
 //INICIAR SPRITES
@@ -72,7 +34,7 @@ typedef struct{
 
 typedef struct{
     int set;
-    int ;isOn
+    int isOn;
     int cont;
     int x,y;
 }bomber;
