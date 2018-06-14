@@ -1,5 +1,0 @@
-gcc untitled.c -o doramir $(pkg-config -cflags -libs allegro-5) -lallegro_ttf -lallegro_font -lallegro_image -lallegro_audio -lallegro_acodec -lallegro -lallegro_main
-dps
-
-
-./doramir
